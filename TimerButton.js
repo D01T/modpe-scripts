@@ -301,7 +301,7 @@
             new Thread_({
                 run() {
                     let interval = Math.ceil(thiz._time * 2.7);
-thiz._progress = -1;
+                    thiz._progress = -1;
                     while (++thiz._progress < 360) {
                         Thread_.sleep(interval);
                         CONTEXT.runOnUiThread({
@@ -337,39 +337,3 @@ thiz._progress = -1;
     $.ProgressButton = ProgressButton;
     $.TimerButton = TimerButton;
 })(this);
-
-
-
-const Bitmap_ = android.graphics.Bitmap,
-        Canvas_ = android.graphics.Canvas,
-        Color_ = android.graphics.Color,
-        Paint_ = android.graphics.Paint,
-        RectF_ = android.graphics.RectF,
-        BitmapDrawable_ = android.graphics.drawable.BitmapDrawable,
-ColorDrawable_ = android.graphics.drawable.ColorDrawable,
-        Gravity_ = android.view.Gravity,
-        View_ = android.view.View,
-        LinearLayout_ = android.widget.LinearLayout,
-        PopupWindow_ = android.widget.PopupWindow,
-        TextView_ = android.widget.TextView,
-        CONTEXT = com.mojang.minecraftpe.MainActivity.currentMainActivity.get(),
-        DP = CONTEXT.getResources().getDisplayMetrics().density;
-
-
-function useItem() {
-    CONTEXT.runOnUiThread({
-        run() {
-try{
-            let layout = new LinearLayout_(CONTEXT),
-                window = new PopupWindow_(layout, -2, -2);
-            layout.addView(new TimerButton().show());
-layout.addView(new TimerButton().setEffectColor(-2794024).setTime(3).show());
-            layout.setOrientation(1);
-            window.setBackgroundDrawable(new ColorDrawable_(Color_.rgb(97, 97, 97)));
-            window.showAtLocation(CONTEXT.getWindow().getDecorView(), Gravity_.CENTER, 0, 0);
-}catch(e){
-print(e +"___"+e.lineNumber);
-}
-        }
-    })
-}

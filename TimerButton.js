@@ -4,6 +4,7 @@
  * @version 1.0
  * @license Apache-2.0
  */
+/** @namespace global */
 ($ => {
     "use strict";
 
@@ -26,7 +27,7 @@
      * Class representing a progress button.
      * @since 2016-08-11
      * @class
-     * @global
+     * @memberOf global
      */
     function ProgressButton() {
         let thiz = this,
@@ -123,7 +124,7 @@
      * @since 2016-08-11
      * @param {Function} func Effect function
      */
-    ProgressButton.setEffect = function (func) {
+    ProgressButton.prototype.setEffect = function (func) {
         if (typeof func === "function") {
             this._func = func;
         } else {
@@ -267,7 +268,7 @@
      * @since 2016-08-11
      * @class
      * @extends ProgressButton
-     * @global
+     * @memberOf global
      */
     function TimerButton() {
         let thiz = this,

@@ -4,6 +4,7 @@
  * @version 1.0
  * @license Apache-2.0
  */
+/** @namespace global */
 ($ => {
     "use strict";
 
@@ -17,7 +18,7 @@
      * Class representing a squircle drawable.
      * @since 2016-08-24
      * @class
-     * @global
+     * @memberOf global
      */
     function SquircleDrawable() {}
 

@@ -4,6 +4,7 @@
  * @version 1.0
  * @license Apache-2.0
  */
+/** @namespace global */
 ($ => {
     "use strict";
 
@@ -28,7 +29,7 @@
      * Class representing a color picker.
      * @since 2016-05-04
      * @class
-     * @global
+     * @memberOf global
      * @param {Number} [r=255] Red
      * @param {Number} [g=0] Blue
      * @param {Number} [b=0] Green
@@ -122,7 +123,7 @@
      * Class representing a window that shows a color picker.
      * @since 2016-05-04
      * @class
-     * @global
+     * @memberOf global
      * @param {Number} [r=255] Red
      * @param {Number} [g=0] Green
      * @param {Number} [b=0] Blue

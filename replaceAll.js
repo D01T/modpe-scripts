@@ -1,4 +1,10 @@
 /**
+ * @file replaceAll function
+ * @author Astro <astr36@naver.com>
+ * @version 1.0
+ * @license Apache-2.0
+ */
+/**
  * Replaces each substring of this string that matches the literal target sequence with the specified literal replacement sequence.
  * @since 2016-08-24
  * @param {String} string The string to be checked

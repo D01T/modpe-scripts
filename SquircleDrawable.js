@@ -2,6 +2,7 @@
  * @file ModPE design library for providing squircle drawable API.
  * @author Astro <astr36@naver.com>
  * @version 1.0
+ * @license Apache-2.0
  */
 ($ => {
     "use strict";

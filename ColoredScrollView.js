@@ -8,8 +8,7 @@
 ($ => {
     "use strict";
 
-    const 
-        ColorDrawable_ = android.graphics.drawable.ColorDrawable,
+    const ColorDrawable_ = android.graphics.drawable.ColorDrawable,
         MotionEvent_ = android.view.MotionEvent,
         View_ = android.view.View,
         LinearLayout_ = android.widget.LinearLayout,
@@ -24,7 +23,6 @@
      * @since 2016-09-06
      * @class
      * @memberOf global
-     * @param {me.astro.design.Theme} [theme=me.astro.design.Theme.DEFAULT] Theme of scroll view
      */
     function ColoredScrollView() {
         let thiz = this;

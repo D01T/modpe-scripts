@@ -31,10 +31,12 @@
 
     SnowEffect.prototype.finish = function () {
         let particles = this._particles;
-        thiz._isRunning = false;
+        this._isRunning = false;
+        try{
         for (let i = particles.length; i--;) {
             particles[i].remove();
         }
+    }catch(e){print(e)}
         this._particles = [];
     };
 
@@ -47,7 +49,7 @@
                 while (thiz._isRunning) {
                     let particle = new SnowParticle();
                     particle.create();
-                    if (!particles[0]._isShowing) {
+                    if (typeof particles[0] === "object" && !particles[0]._isShowing) {
                         particles.splice(0, 1);
                     }
                     particles.push(particle);

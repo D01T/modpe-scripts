@@ -90,6 +90,23 @@
     })();
 
     /**
+     * Removes the snow particle.
+     * @since 2016-12-20
+     */
+    SnowParticle.prototype.remove = function () {
+        let thiz = this;
+        thiz._isShowing = false;
+        if (thiz._window instanceof PopupWindow_) {
+            CONTEXT.runOnUiThread({
+                run() {
+                    thiz._window.dismiss();
+                    thiz._window = null;
+                }
+            });
+        }
+    };
+
+    /**
      * Creates a snow particle.
      * @since 2016-12-20
      */
@@ -129,23 +146,6 @@
                 }
             }
         }).start();
-    };
-
-    /**
-     * Removes the snow particle.
-     * @since 2016-12-20
-     */
-    SnowParticle.prototype.remove = function () {
-        let thiz = this;
-        thiz._isShowing = false;
-        if (thiz._window instanceof PopupWindow_) {
-            CONTEXT.runOnUiThread({
-                run() {
-                    thiz._window.dismiss();
-                    thiz._window = null;
-                }
-            });
-        }
     };
 
     $.SnowEffect = SnowEffect;

@@ -119,13 +119,3 @@
     $.SnowEffect = SnowEffect;
     $.SnowParticle = SnowParticle;
 })(this);
-
-let e = new SnowEffect();
-
-function useItem() {
-    e.start();
-}
-
-function attackHook() {
-    e.finish();
-}

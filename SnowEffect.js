@@ -14,7 +14,6 @@
         Base64_ = android.util.Base64,
         Gravity_ = android.view.Gravity,
         ImageView_ = android.widget.ImageView,
-        LinearLayout_ = android.widget.LinearLayout,
         PopupWindow_ = android.widget.PopupWindow,
         MainActivity_ = com.mojang.minecraftpe.MainActivity,
         Thread_ = java.lang.Thread,
@@ -32,12 +31,8 @@
     SnowEffect.prototype.finish = function () {
         let particles = this._particles;
         this._isRunning = false;
-        try {
-            for (let i = particles.length; i--;) {
-                particles[i].remove();
-            }
-        } catch (e) {
-            print(e)
+        for (let i = particles.length; i--;) {
+            particles[i].remove();
         }
         this._particles = [];
     };

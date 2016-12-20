@@ -32,11 +32,13 @@
     SnowEffect.prototype.finish = function () {
         let particles = this._particles;
         this._isRunning = false;
-        try{
-        for (let i = particles.length; i--;) {
-            particles[i].remove();
+        try {
+            for (let i = particles.length; i--;) {
+                particles[i].remove();
+            }
+        } catch (e) {
+            print(e)
         }
-    }catch(e){print(e)}
         this._particles = [];
     };
 
@@ -93,13 +95,15 @@
                     Thread_.sleep(50);
                     y += 5;
                 }
-                thiz._isShowing = false;
-                CONTEXT.runOnUiThread({
-                    run() {
-                        thiz._window.dismiss();
-                        thiz._window = null;
-                    }
-                });
+                if (thiz._isShowing) {
+                    thiz._isShowing = false;
+                    CONTEXT.runOnUiThread({
+                        run() {
+                            thiz._window.dismiss();
+                            thiz._window = null;
+                        }
+                    });
+                }
             }
         }).start();
     };

@@ -69,7 +69,7 @@
 
         controller.setBackgroundDrawable(new BitmapDrawable_(bitmapC));
         controller.setOnTouchListener(new View_.OnTouchListener({
-            onTouch: function(view, event) {
+            onTouch(view, event) {
                 let action = event.getAction();
                 if (action === MotionEvent_.ACTION_DOWN || action === MotionEvent_.ACTION_MOVE || action === MotionEvent_.ACTION_UP) {
                     let x = Math.floor(event.getX() / DP),
@@ -89,7 +89,7 @@
 
         picker.setBackgroundDrawable(new BitmapDrawable_(bitmapP));
         picker.setOnTouchListener(new View_.OnTouchListener({
-            onTouch: function(view, event) {
+            onTouch(view, event) {
                 let action = event.getAction();
                 if (action === MotionEvent_.ACTION_DOWN || action === MotionEvent_.ACTION_MOVE || action === MotionEvent_.ACTION_UP) {
                     let x = Math.floor(event.getX() / DP),
@@ -110,7 +110,7 @@
      * @since 2016-05-04
      * @returns {android.widget.LinearLayout} the widget of color picker
      */
-    ColorPicker.prototype.show = function() {
+    ColorPicker.prototype.show = function () {
         let layout = new LinearLayout_(CONTEXT);
         layout.addView(this._picker, DP * 240, DP * 240);
         layout.addView(this._controller, DP * 40, DP * 240);
@@ -136,18 +136,31 @@
             func(color);
         });
         viewer.setBackgroundDrawable(new ColorDrawable_(Color_.rgb(r, g, b)));
+        viewer.setText("Click to close");
+        viewer.setTextColor(Color_.rgb(r, g, b));
+        viewer.setTextSize(1, 14);
     }
 
     /**
      * Display the window of color picker.
      * @since 2016-05-04
      */
-    ColorPickerWindow.prototype.show = function() {
+    ColorPickerWindow.prototype.show = function () {
         let thiz = this;
         CONTEXT.runOnUiThread({
             run() {
                 let layout = new LinearLayout_(CONTEXT),
                     window = new PopupWindow_(layout, -2, -2);
+                thiz._viewer.setOnClickListener(new View_.OnClickListener({
+                    onClick(view) {
+                        CONTEXT.runOnUiThread({
+                            run() {
+                                window.dismiss();
+                                window = null;
+                            }
+                        });
+                    }
+                }));
                 layout.addView(thiz._picker.show(), DP * 280, DP * 240);
                 layout.addView(thiz._viewer, DP * 280, DP * 100);
                 layout.setOrientation(1);

@@ -47,8 +47,8 @@
             bitmapP = Bitmap_.createBitmap(240, 240, Bitmap_.Config.ARGB_8888),
             canvasC = new Canvas_(bitmapC),
             canvasP = new Canvas_(bitmapP),
-            pickerX = 240,
-            pickerY = 0;
+            pickerX = 120,
+            pickerY = 1;
 
         paint.setShader(new LinearGradient_(0, 0, 0, 40, Color_.rgb(255, 0, 0), Color_.rgb(255, 255, 0), Shader_.TileMode.CLAMP));
         canvasC.drawRect(0, 0, 40, 40, paint);
@@ -74,8 +74,8 @@
                 if (action === MotionEvent_.ACTION_DOWN || action === MotionEvent_.ACTION_MOVE || action === MotionEvent_.ACTION_UP) {
                     let x = Math.floor(event.getX() / DP),
                         y = Math.floor(event.getY() / DP);
-                    if (x >= 0 && x <= 40 && y >= 0 && y <= 240) {
-                        paint.setShader(new LinearGradient_(240, 0, 0, 0, bitmapC.getPixel(20, y), Color_.WHITE, Shader_.TileMode.CLAMP));
+                    if (x > 0 && x < 40 && y > 0 && y < 240) {
+                        paint.setShader(new LinearGradient_(240, 0, 0, 0, bitmapC.getPixel(0, y), Color_.WHITE, Shader_.TileMode.CLAMP));
                         canvasP.drawRect(0, 0, 240, 240, paint);
                         paint.setShader(new LinearGradient_(0, 0, 0, 240, Color_.TRANSPARENT, Color_.BLACK, Shader_.TileMode.CLAMP));
                         canvasP.drawRect(0, 0, 240, 240, paint);
@@ -94,7 +94,7 @@
                 if (action === MotionEvent_.ACTION_DOWN || action === MotionEvent_.ACTION_MOVE || action === MotionEvent_.ACTION_UP) {
                     let x = Math.floor(event.getX() / DP),
                         y = Math.floor(event.getY() / DP);
-                    if (x >= 0 && x <= 240 && y >= 0 && y <= 240) {
+                    if (x > 0 && x < 240 && y > 0 && y < 240) {
                         pickerX = x;
                         pickerY = y;
                         func(bitmapP.getPixel(x, y));
@@ -130,15 +130,20 @@
      * @param {Function} [func=function(){}] Callback to be invoked when color was changed
      */
     function ColorPickerWindow(r, g, b, func) {
+        r = r || 255;
+        g = g || 0;
+        b = b || 0;
+        func = func || (() => {});
         let viewer = this._viewer = new TextView_(CONTEXT);
         this._picker = new ColorPicker(r, g, b, color => {
             viewer.setBackgroundDrawable(new ColorDrawable_(color));
             func(color);
         });
         viewer.setBackgroundDrawable(new ColorDrawable_(Color_.rgb(r, g, b)));
+        viewer.setGravity(Gravity_.CENTER);
         viewer.setText("Click to close");
         viewer.setTextColor(Color_.rgb(r, g, b));
-        viewer.setTextSize(1, 14);
+        viewer.setTextSize(1, 18);
     }
 
     /**
